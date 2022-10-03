@@ -1,6 +1,11 @@
-const express = require('express')
-const app = express()
-const graphqlHTTP =require('express-graphql')
-app.listen(3000,()=>{
-    console.log("listening is started")
-})
+const express = require('express');
+const {graphqlHTTP} = require('express-graphql');
+const app = express();
+const schema = require('./schema/schema')
+app.use('/graphql',graphqlHTTP({
+    schema,
+    graphiql:true
+}));
+app.listen(5000, () => {
+  console.log('listening is started');
+});
